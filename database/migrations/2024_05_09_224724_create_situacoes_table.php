@@ -16,6 +16,12 @@ return new class extends Migration
             $table->string('nome');
             $table->timestamps();
         });
+
+        DB::table('situacoes')->insert([
+            ['nome' => 'Novo'],
+            ['nome' => 'Pendente'],
+            ['nome' => 'Resolvido']
+        ]);
     }
 
     /**

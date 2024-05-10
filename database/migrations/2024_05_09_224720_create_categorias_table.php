@@ -16,6 +16,13 @@ return new class extends Migration
             $table->string('nome');
             $table->timestamps();
         });
+
+        DB::table('categorias')->insert([
+            ['nome' => 'Hardware'],
+            ['nome' => 'Software'],
+            ['nome' => 'Redes'],
+            ['nome' => 'Outros']
+        ]);   
     }
 
     /**

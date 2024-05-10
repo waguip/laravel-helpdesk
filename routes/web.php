@@ -5,10 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChamadoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\MetricasController;
 
-Route::get('/', function () {
-    return view('index');
-})->name('home');
+Route::get('/', [MetricasController::class, 'index'])->name('home');
 
 Route::get('/chamados', [ChamadoController::class, 'index'])->name('chamados.index');
 Route::get('/chamados/create', [ChamadoController::class, 'create'])->name('chamados.create');
