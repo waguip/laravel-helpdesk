@@ -24,7 +24,14 @@ class ChamadoController extends Controller
         $data = $request->validate([
             'titulo' => 'required',
             'descricao' => 'required',
-            'categoria_id' => 'required'
+            'categoria_id' => 'required|integer|exists:categorias,id'
+        ], 
+        [
+            'titulo.required' => 'O campo título é obrigatório',
+            'descricao.required' => 'O campo descrição é obrigatório',
+            'categoria_id.required' => 'O campo categoria é obrigatório',
+            'categoria_id.integer' => 'O campo categoria deve ser um número inteiro',
+            'categoria_id.exists' => 'A categoria informada não existe'
         ]);
         
         $data['prazo_solucao'] = now()->addDays(3);
@@ -38,6 +45,25 @@ class ChamadoController extends Controller
 
     public function destroy(Chamado $chamado) {
         $chamado->delete();
-        return redirect(route('chamados.index'))->with('msg', 'Chamado deletado com sucesso!');;
+        return redirect(route('admin.index'))->with('msg', 'Chamado deletado com sucesso!');
+    }    
+
+    public function update(Request $request, Chamado $chamado) {
+        $data = $request->validate([
+            'situacao_id' => 'required|integer|exists:situacoes,id'
+        ], 
+        [
+            'situacao_id.required' => 'O campo situação é obrigatório',
+            'situacao_id.integer' => 'O campo situação deve ser um número inteiro',
+            'situacao_id.exists' => 'A situação informada não existe'
+        ]);
+        
+        if($data['situacao_id'] == 3) {
+            $data['data_solucao'] = now();
+        }
+
+        $chamado->update($data);
+
+        return redirect(route('admin.index'))->with('msg', 'Situação do chamado atualizada com sucesso!');
     }
 }
