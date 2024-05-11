@@ -1,5 +1,6 @@
-# laravel-helpdesk
-Um sistema de gerenciamento de chamados
+<p align="center"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+
+# Sistema de gerenciamento de chamados - helpdesk
 
 ## Instalação
 Utilize o gerenciador de pacotes [composer](https://getcomposer.org/) e [npm](https://www.npmjs.com/) para instalar o Projeto Laravel.
@@ -37,5 +38,28 @@ Em outro terminal, inicie a aplicação localmente.
 php artisan serve
 ```
 
- ## Diagrama de relacionamentos
- ![image](https://github.com/waguip/laravel-helpdesk/assets/51832038/b936349f-63dd-47f8-bfed-78e9d82a843b)
+# Diagrama de entidade e relacionamento do banco de dados
+<p align="center"><img src="https://github.com/waguip/laravel-helpdesk/assets/51832038/695f9d96-eddb-4ad0-bd80-298f548f50d9" width="500" alt="Diagrama ER do banco de dados plss"></a></p>
+
+# Telas de usúario
+
+## Página Inicial
+A página inicial do sistema mostra algumas métricas dos dados.
+![Home](https://github.com/waguip/laravel-helpdesk/assets/51832038/59db9d99-001d-4cec-8bb1-08ab01a59cf4)
+
+## Página de chamados
+### Visualização dos chamados criados
+![Chamados.index](https://github.com/waguip/laravel-helpdesk/assets/51832038/6ca69519-c1be-4073-be9d-3da7548a2875)
+
+### Criação de novo chamado
+![Chamados.create](https://github.com/waguip/laravel-helpdesk/assets/51832038/6c633dd9-1286-4869-8be4-82ee320856e8)
+
+# Telas de admin
+
+## Página Inicial
+Gerenciamento de chamados com opções para alterar situação ou deletar chamado
+![Admin.index](https://github.com/waguip/laravel-helpdesk/assets/51832038/4f516f29-ea94-491b-a559-11bbe0d2b566)
+
+## Página de categorias
+Tela onde o admin cria ou deleta categorias
+![Categorias.index](https://github.com/waguip/laravel-helpdesk/assets/51832038/fa64d681-f272-4111-bf25-17c73ebf9289)
