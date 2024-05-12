@@ -15,13 +15,17 @@ class MetricasController extends Controller
         $categoriasTotal = Categoria::count();        
         $chamadosFinalizados = Chamado::where('situacao_id', 3)->count();
 
-        $chamadosFinalizadosAntesPrazo = Chamado::where('situacao_id', 3)
-            ->whereDate('data_solucao', '>', 'prazo_solucao')
-            ->whereMonth('data_solucao', '=', date('m'))
-            ->count();
+        $chamadosNoMes = Chamado::whereMonth('data_criacao', date('m'))->count();
 
-        $percentualChamadosDentroPrazo = ($chamadosFinalizados > 0) ? ($chamadosFinalizadosAntesPrazo / $chamadosFinalizados) * 100 : 0;
+        $chamadosFinalizadosAntesPrazo =
+            Chamado::where('situacao_id', 3)            
+            ->whereMonth('data_solucao', date('m'))            
+            ->whereRaw('data_solucao <= prazo_solucao')            
+            ->count()
+        ;
 
+        $percentualChamadosDentroPrazo = round(($chamadosNoMes > 0) ? ($chamadosFinalizadosAntesPrazo / $chamadosNoMes) * 100 : 0, 2);
+            
         return view('index' , compact('chamadosTotal', 'categoriasTotal', 'chamadosFinalizados', 'percentualChamadosDentroPrazo'));
     }
 }
